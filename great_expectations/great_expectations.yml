@@ -1,0 +1,74 @@
+
+config_version: 2.0
+
+
+datasources:
+  Delhi Weather Data:
+    module_name: great_expectations.datasource
+    data_asset_type:
+      class_name: PandasDataset
+      module_name: great_expectations.dataset
+    class_name: PandasDatasource
+    batch_kwargs_generators:
+      subdir_reader:
+        class_name: SubdirReaderBatchKwargsGenerator
+        base_directory: ..\Delhi_Weather_Data
+
+
+config_variables_file_path: uncommitted/config_variables.yml
+
+
+plugins_directory: plugins/
+
+
+validation_operators:
+  action_list_operator:
+
+    class_name: ActionListValidationOperator
+    action_list:
+    - name: store_validation_result
+      action:
+        class_name: StoreValidationResultAction
+    - name: store_evaluation_params
+      action:
+        class_name: StoreEvaluationParametersAction
+    - name: update_data_docs
+      action:
+        class_name: UpdateDataDocsAction
+
+
+stores:
+  expectations_store:
+    class_name: ExpectationsStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: expectations/
+
+  validations_store:
+    class_name: ValidationsStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: uncommitted/validations/
+
+  evaluation_parameter_store:
+    class_name: EvaluationParameterStore
+
+expectations_store_name: expectations_store
+validations_store_name: validations_store
+evaluation_parameter_store_name: evaluation_parameter_store
+
+data_docs_sites:
+   local_site:
+    class_name: SiteBuilder
+    # set to false to hide how-to buttons in Data Docs
+    show_how_to_buttons: true
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: uncommitted/data_docs/local_site/
+    site_index_builder:
+      class_name: DefaultSiteIndexBuilder
+
+anonymous_usage_statistics:
+  data_context_id: 2b63f858-59a9-4363-b124-ad4a24e39a9d
+  enabled: true
+notebooks:

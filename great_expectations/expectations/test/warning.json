@@ -1,0 +1,38 @@
+{
+  "data_asset_type": "Dataset",
+  "expectation_suite_name": "test.warning",
+  "expectations": [
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": " _dewptm",
+        "max_value": 80,
+        "min_value": -25
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": " _wgustm"
+      },
+      "meta": {}
+    }
+  ],
+  "meta": {
+    "citations": [
+      {
+        "batch_kwargs": {
+          "data_asset_name": "testset",
+          "datasource": "Delhi Weather Data",
+          "path": "C:\\Users\\aravinth.raja\\GE\\great_expectations\\..\\Delhi_Weather_Data\\testset.csv"
+        },
+        "batch_markers": null,
+        "batch_parameters": null,
+        "citation_date": "20200823T110326.711516Z",
+        "comment": "New suite added via CLI"
+      }
+    ],
+    "great_expectations.__version__": "0.11.8"
+  }
+}
