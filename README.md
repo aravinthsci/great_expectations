@@ -1,2 +1,2 @@
 # great_expectations
-This contains examples of great_expectations validation library 
+This Repo contains examples of great_expectations validation library 
